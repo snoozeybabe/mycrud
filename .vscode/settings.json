@@ -1,0 +1,5 @@
+{
+  "editor.fontFamily": "Fira Code, Monaco, 'Courier New', monospace",
+  "eslint.enable": false,
+  "files.autoSaveDelay": 30000
+}
