@@ -82,7 +82,7 @@ class ListUser extends Component {
           <Table className={classes.table}>
             <TableHead>
               <TableRow>
-                <CustomCell>Nom </CustomCell>
+                <CustomCell>Name </CustomCell>
                 <CustomCell>Prenom </CustomCell>
                 <CustomCell numeric >Age </CustomCell>
                 <CustomCell>N° Dossier </CustomCell>
