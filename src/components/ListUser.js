@@ -85,8 +85,8 @@ class ListUser extends Component {
                 <CustomCell>Name </CustomCell>
                 <CustomCell>Prenom </CustomCell>
                 <CustomCell numeric >Age </CustomCell>
-                <CustomCell>N° Dossier </CustomCell>
-                <CustomCell>Date Naissance </CustomCell>
+                <CustomCell>N°Doss </CustomCell>
+                <CustomCell>Date Nai. </CustomCell>
               </TableRow>
             </TableHead>
             <TableBody>
