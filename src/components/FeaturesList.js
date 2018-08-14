@@ -1,5 +1,5 @@
 import React from 'react';
-import fontawesome from '@fortawesome/fontawesome';
+//import fontawesome from '@fortawesome/fontawesome';
 
 
 const FeaturesList = (props) => {
@@ -7,19 +7,19 @@ const FeaturesList = (props) => {
   const listStyle ={
     listStyle : 'none',
     display : 'inline-flex',
-  };
+  }
 
-  const myList = [
-    {
-      text: 'OMG'
-    },
-    {
-      text: 'OMG'
-    },
-    {
-      text: 'OMG'
-    }
-  ];
+  // const myList = [
+  //   {
+  //     text: 'OMG'
+  //   },
+  //   {
+  //     text: 'OMG'
+  //   },
+  //   {
+  //     text: 'OMG'
+  //   }
+  //];
 
 
   return(

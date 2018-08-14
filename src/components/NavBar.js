@@ -12,7 +12,7 @@ import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import About from './About';
 import Infos from './Infos';
 import ListUser from './ListUser';
-import FormUser from '../containers/FormUser'
+import NewFormUser from '../containers/NewFormUser';
 
 const styles = {
   root :{
@@ -56,7 +56,7 @@ const styles = {
       <Route exact path='/' component={Infos}/>
       <Route exact path='/about' component={About}/>
       <Route exact path='/userlist' component={ListUser}/>
-      <Route exact path='/adduser' component={FormUser}/>
+      <Route exact path='/adduser' component={NewFormUser}/>
       </div>
     </Router>
 

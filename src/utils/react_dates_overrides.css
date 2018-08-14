@@ -1,0 +1,14 @@
+.CalendarDay__highlighted_calendar {
+  background: rgb(140, 23, 29);
+  color: rgb(72, 255, 0);
+}
+
+.CalendarDay__highlighted_calendar:hover {
+  background: #58D68D;
+  color: #186A3B;
+}
+
+.CalendarDay__highlighted_calendar:active {
+  background: #58D68D;
+  color: #186A3B;
+}

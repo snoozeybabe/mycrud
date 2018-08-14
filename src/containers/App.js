@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-use-before-define
 import React, { Component } from 'react';
 import './../containers/App.css';
+import 'react-dates/initialize';
 import NavBar from  './../components/NavBar';
 
 
