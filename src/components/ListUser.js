@@ -8,6 +8,9 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow  from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import SvgIcon from '@material-ui/core/SvgIcon';
+import Alarm from '@material-ui/icons/Alarm';
+import Today from '@material-ui/icons/Today';
+
 
 function HomeIcon(props) {
   return (
@@ -87,6 +90,16 @@ class ListUser extends Component {
     .catch(err => console.log(err))
   }
 
+  editProfil = _ => {
+    alert("What")
+  }
+  deleteUser = _ => {
+
+  }
+  seeProfil = _ => {
+
+  }
+
   renderUsers = (user) => {
     const { classes } = this.props;
     return( 
@@ -97,7 +110,8 @@ class ListUser extends Component {
         <CustomCell>{user.n_dossier}</CustomCell>
         <CustomCell>{user.date_naissance}</CustomCell>
         <CustomCell>
-          <ProfilIcon className={classes.icon} />
+          <Today/>
+          <ProfilIcon className={classes.icon} onClick={() => { this.editProfil()}} />
           <HomeIcon className={classes.icon} />
           <DeleteIcon className={classes.icon} />
         </CustomCell>
@@ -112,6 +126,7 @@ class ListUser extends Component {
     return (
       <div>
         <h1>List </h1>
+        
         <Paper className={classes.root}>
           <Table className={classes.table}>
             <TableHead>
