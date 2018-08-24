@@ -10,6 +10,9 @@ import Paper from '@material-ui/core/Paper';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import Alarm from '@material-ui/icons/Alarm';
 import Today from '@material-ui/icons/Today';
+import Loader from '../components/Loader';
+import {Input, Label} from 'reactstrap';
+
 
 
 function HomeIcon(props) {
@@ -60,6 +63,13 @@ const styles = theme => ({
   icon: {
     padding : 'none' ,
   },
+  label : {
+    marginLeft : 3,
+    float : 'left'
+  },
+  searchbar : {
+    fontStyle : 'italic'
+  },
   row : {
     height : 40,
     '&:nth-of-type(odd)' : {
@@ -74,22 +84,44 @@ class ListUser extends Component {
     super(props);
     this.state = {
       users : [],
+      loading : true
     }
+    this.searchUser = this.searchUser.bind(this);
   }
 
   componentDidMount() {
     this.getUsers();
+    this.setState({ loading : true});
   }
+
+  
 
   getUsers = _ =>{
     fetch('/users')
     .then(res => res.json())
     .then( ({ data }) => { 
       this.setState({users : data})
+      this.setState({loading : false})
     } )
     .catch(err => console.log(err))
   }
 
+  searchUser = e =>{
+    const target = e.target;
+    var searchName = { firstName : target.value}
+    fetch('/users/search',{
+      method : 'POST',
+      headers : { 'Content-type' : 'application/json'},
+      body : JSON.stringify(searchName)
+    })
+    .then(res => res.json())
+    .then(data => {
+      this.setState({users : data});
+    })
+
+
+
+  }
   editProfil = _ => {
     alert("What")
   }
@@ -103,6 +135,8 @@ class ListUser extends Component {
   renderUsers = (user) => {
     const { classes } = this.props;
     return( 
+
+    
     <TableRow className = {classes.row} key = {user.id}>
         <CustomCell component="th" scope="row">{user.civilite + " "+ user.nom}</CustomCell>
         <CustomCell>{user.prenom}</CustomCell>
@@ -123,10 +157,16 @@ class ListUser extends Component {
   render() {
     const {users}  =  this.state; 
     const { classes } = this.props;
+
+    if(this.state.loading){
+      return <Loader loading={this.state.loading}/>     
+    }
+
     return (
       <div>
         <h1>List </h1>
-        
+        <Label className={classes.label}>Recherche de patient</Label>
+        <Input className={classes.searchbar} placeholder="Nom,prenom,numero de dossier ..." onChange={this.searchUser}/>
         <Paper className={classes.root}>
           <Table className={classes.table}>
             <TableHead>

@@ -38,7 +38,7 @@ class FormUser extends Component {
       firstName   : '',
       birthDay    : '',
       nDossier    : '',
-      commentaire : ''
+      commentaire : ""
     };
 
     this._handleSubmit = this._handleSubmit.bind(this);

@@ -16,7 +16,6 @@ class App extends Component {
     const { patients } = this.state;
     return (
       <div className="App">
-      
         <NavBar/>
       </div>
     );

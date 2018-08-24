@@ -2,6 +2,7 @@
   text-align: center;
   justify-content:center;
   overflow: hidden;
+  height : 100%;
 }
 
 .App-logo {
