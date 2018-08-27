@@ -22,13 +22,14 @@ const styles = theme =>({
     grid : {
       backgroundColor : '#BBDEFB',
       padding: 5,
+      minHeight : '100%'
     },
     paper :{
       padding : theme.spacing.unit *2,
       textAlign : 'center',
       display : 'flex',
       flexWrap : 'wrap',
-      minHeight : 246,
+      minHeight : '100%',
       margin: 'auto'
     },
     paperFeatures:{

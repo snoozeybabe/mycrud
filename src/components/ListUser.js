@@ -59,6 +59,7 @@ const styles = theme => ({
   },
   table : {
     minWidth : 700,
+    overflowY : 'visible'
   },
   icon: {
     padding : 'none' ,

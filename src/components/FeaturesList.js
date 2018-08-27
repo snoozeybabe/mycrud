@@ -1,4 +1,5 @@
 import React from 'react';
+import Today from '@material-ui/icons/Today';
 //import fontawesome from '@fortawesome/fontawesome';
 
 
@@ -27,7 +28,7 @@ const FeaturesList = (props) => {
 
     
       <ul style={listStyle}>
-        <li>OMG</li>
+        <li><Today/></li>
         <li>OMG</li>
         <li>OMG</li>
         <li>OMG</li>
