@@ -10,7 +10,7 @@ import Grid from '@material-ui/core/Grid';
 const styles = theme =>({
   root : {
     flexGrow : 1,
-    outline : 'none',
+      outline :'none!important',
   },
   grid : {
     'backgroundColor' : '#BBDEFB' ,
@@ -26,8 +26,11 @@ const styles = theme =>({
     justify : 'center',
     backgroundColor : 'white'
   },
+  button :{
+    outline :'none!important'
+  }
   
-})
+});
 
 class FormUser extends Component {
   constructor(props){
@@ -90,20 +93,20 @@ class FormUser extends Component {
                 <Row className={classes.row}>
                   <Col md="12" className={classes.col}>
                     <Row className={classes.row} >
-                      <legend className="col-form-label col-sm-1"  style={{ paddingLeft: 0 }}>Civilité : </legend>
-                        <FormGroup check className="col-sm-1">
+                      <legend className="col-form-label col-md-1 col-sm-2"  style={{ paddingLeft: 0 }}>Civilité : </legend>
+                        <FormGroup check className="col-lg-1 col-sm-2">
                             <Label check>
                               <Input type="radio" name="gender" value="Mr" onChange={this._handleInputOnChange}/>
                               Mr
                             </Label>
                           </FormGroup>
-                        <FormGroup check className="col-sm-1">
+                        <FormGroup check className="col-lg-1 col-sm-2">
                             <Label check>
                               <Input type="radio" name="gender" value="Mme" onChange={this._handleInputOnChange}/>
                                 Mme
                             </Label>
                         </FormGroup>
-                        <FormGroup check className="col-sm-1">
+                        <FormGroup check className="col-lg-1 col-sm-2">
                           <Label check>
                               <Input type="radio" name="gender" value="Mlle" onChange={this._handleInputOnChange}/>
                                 Mlle
@@ -146,7 +149,7 @@ class FormUser extends Component {
                     <Row className={classes.row}>
                       <FormGroup row className="col-sm-10" >
                         <Col sm={{ size : 10, offset : 9}}>
-                          <Button color="primary">Ajouter</Button>{'  '}
+                          <Button  className={classes.button} color="primary">Ajouter</Button>{'  '}
                         </Col>
                       </FormGroup>
                     </Row>

@@ -42,7 +42,9 @@ const styles = theme =>({
     },
     featuresList:{
       margin  : 'auto',
+      minWidth :'80%',
       display : 'inline-grid',
+      textAlign : 'center'
     },
 
     card : {

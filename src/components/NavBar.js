@@ -25,6 +25,9 @@ const styles = {
 
   link : {
     textDecoration : 'none',
+  },
+  button :{
+    outline :'none!important'
   }
 
 };
