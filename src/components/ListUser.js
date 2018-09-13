@@ -11,7 +11,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 import {Today,AccountBox, DeleteForever} from '@material-ui/icons';
 import Loader from '../components/Loader';
 import {Input, Label} from 'reactstrap';
-import ModalRemove from '../components/ModalRemove';
+import WrappedModal from '../components/ModalRemove';
 
 
 
@@ -82,13 +82,12 @@ class ListUser extends Component {
     this.setState({ loading : true});
   }
 
-  
-
+ 
   getUsers = _ =>{
     fetch('/users')
     .then(res => res.json())
     .then( ({ data }) => { 
-      this.setState({users : data})
+      this.setState({users : data  || [] })
       this.setState({loading : false})
     } )
     .catch(err => console.log(err))
@@ -111,6 +110,7 @@ class ListUser extends Component {
 
   }
   editProfil = _ => {
+
     this.setState({ openModal : !this.state.openModal});
   }
   deleteUser = _ => {
@@ -133,7 +133,6 @@ class ListUser extends Component {
         <CustomCell>{user.date_naissance}</CustomCell>
         <CustomCell>
         <AccountBox onClick={() => { this.editProfil()}} />
-
         <Today/>
         <DeleteForever/>
         </CustomCell>
@@ -175,7 +174,7 @@ class ListUser extends Component {
               })}
             </TableBody>
           </Table>
-          <ModalRemove  className={classes.core} open={this.state.openModal}/>
+          <WrappedModal open={this.state.openModal}/>
           </Paper>
         
       </div>
