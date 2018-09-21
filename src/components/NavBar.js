@@ -11,7 +11,7 @@ import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
 import About from './About';
 import Infos from './Infos';
-import ListUser from './ListUser';
+import ListUser from '../containers/ListUserContainer';
 import NewFormUser from '../containers/NewFormUser';
 
 const styles = {
@@ -38,7 +38,7 @@ const styles = {
 
     return (
       <Router>
-      <div>
+    
       <div className={classes.root}>
       <AppBar position="static" color="default">
         <Toolbar>
@@ -55,7 +55,7 @@ const styles = {
           <Link className={classes.link} to='/about'>  <Button  className={classes.button} color="inherit">About</Button></Link>
         </Toolbar>
       </AppBar>
-    </div>
+  
       <Route exact path='/' component={Infos}/>
       <Route exact path='/about' component={About}/>
       <Route exact path='/userlist' component={ListUser}/>

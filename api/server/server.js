@@ -70,6 +70,6 @@ app.on('listening',function(){
     console.log('ok, server is running');
 });
 
-app.listen(3100,function(){
+app.listen(3001,function(){
   console.log("App listening in 3100");
 });

@@ -1,10 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
 
 import About from './components/About';
 import Infos from './components/Infos';
 import ListUser from './components/ListUser';
-import Navbar from './components/NavBar';
+// import Navbar from './components/NavBar';
 
 
 export default () =>{

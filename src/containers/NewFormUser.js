@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Container,Alert,Button, Form,FormGroup,Label,Input,FormText,Col,Row} from 'reactstrap';
-import { SingleDatePicker } from 'react-dates';
+import { Container,Button, Form,FormGroup,Label,Input,Col,Row} from 'reactstrap';
+//import { SingleDatePicker } from 'react-dates';
 
 import { withStyles } from  '@material-ui/core/styles';
 import 'react-dates/lib/css/_datepicker.css';
@@ -61,7 +61,7 @@ class FormUser extends Component {
           //return res.json(); 
       })
       .then(function(datas) {
-        if(datas == "success") console.log("User added here ");
+        if(datas === "success") console.log("User added here ");
       })
       .catch(err => console.log(err));
   }

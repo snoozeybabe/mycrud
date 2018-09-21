@@ -7,15 +7,10 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow  from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import SvgIcon from '@material-ui/core/SvgIcon';
 import {Today,AccountBox, DeleteForever} from '@material-ui/icons';
 import Loader from '../components/Loader';
 import {Input, Label} from 'reactstrap';
 import WrappedModal from '../components/ModalRemove';
-
-
-
-
 
 
 const CustomCell = withStyles(theme => ({
@@ -70,7 +65,7 @@ class ListUser extends Component {
   constructor(props){
     super(props);
     this.state = {
-      users : [],
+      users : props.users ? props.users : [],
       loading : true,
       openModal : false,
     }
@@ -78,22 +73,15 @@ class ListUser extends Component {
   }
 
   componentDidMount() {
-    this.getUsers();
-    this.setState({ loading : true});
+  
+   // this.setState({ loading : true});
   }
 
  
-  getUsers = _ =>{
-    fetch('/users')
-    .then(res => res.json())
-    .then( ({ data }) => { 
-      this.setState({users : data  || [] })
-      this.setState({loading : false})
-    } )
-    .catch(err => console.log(err))
-  }
+
 
   searchUser = e =>{
+    
     const target = e.target;
     var searchName = { firstName : target.value}
     fetch('/users/search',{
@@ -105,6 +93,10 @@ class ListUser extends Component {
     .then(data => {
       this.setState({users : data});
     })
+
+    //TODO : Ajouter Catch
+
+    //Todo : Créer un fetch génerique
 
 
 
@@ -118,6 +110,15 @@ class ListUser extends Component {
   }
   seeProfil = _ => {
 
+  }
+
+  //WARNING! To be deprecated in React v17. Use new lifecycle static getDerivedStateFromProps instead.
+  componentWillReceiveProps(nextProps) {
+    console.log("MTFCK", nextProps )
+    if(nextProps !== this.props) {
+      this.setState({ users : nextProps.users, loading : false});
+      
+    }
   }
 
   renderUsers = (user) => {
@@ -144,7 +145,7 @@ class ListUser extends Component {
   render() {
     const {users}  =  this.state; 
     const { classes } = this.props;
-
+    
     if(this.state.loading){
       return <Loader loading={this.state.loading}/>     
     }
@@ -167,11 +168,9 @@ class ListUser extends Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {users.map(user =>{
-                return(
-                  this.renderUsers(user)
-                );
-              })}
+              {
+                users.map(user => this.renderUsers(user))
+               }
             </TableBody>
           </Table>
           <WrappedModal open={this.state.openModal}/>
@@ -187,3 +186,6 @@ ListUser.propTypes = {
 }
 
 export default withStyles(styles)(ListUser);
+
+
+

@@ -5,7 +5,7 @@ import 'react-dates/initialize';
 import NavBar from  './../components/NavBar';
 
 
-import Routes from '../routes';
+// import Routes from '../routes';
 
 class App extends Component {
   constructor(props){
@@ -13,7 +13,9 @@ class App extends Component {
     this.state = {}
   }
   render() {
-    const { patients } = this.state;
+  //  const { patients } = this.state;
+
+  //TODO : Remove la div App ( vérifier les dépendances )
     return (
       <div className="App">
         <NavBar/>
