@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Container,Button, Form,FormGroup,Label,Input,Col,Row} from 'reactstrap';
-//import { SingleDatePicker } from 'react-dates';
+import UserForm from '../components/UserForm';
+
+import { getUserList } from '../userApi/userApi';
 
 import { withStyles } from  '@material-ui/core/styles';
 import 'react-dates/lib/css/_datepicker.css';
@@ -13,7 +14,7 @@ const styles = theme =>({
       outline :'none!important',
   },
   grid : {
-    'backgroundColor' : '#BBDEFB' ,
+    'backgroundColor' : 'white' ,
   },
 
   col :{
@@ -37,10 +38,10 @@ class FormUser extends Component {
     super(props);
     this.state =  {
       gender      : '',
-      lastName    : '',
-      firstName   : '',
-      birthDay    : '',
-      nDossier    : '',
+      lastname    : '',
+      firstname   : '',
+      birthday    : '',
+      ndossier    : '',
       commentaire : ""
     };
 
@@ -71,6 +72,7 @@ class FormUser extends Component {
   }
 
   _handleInputOnChange(e){
+    getUserList();
     const target = e.target;
     const name = target.name;
     this.setState({
@@ -78,89 +80,14 @@ class FormUser extends Component {
     })
   }
 
-
-
-
   render() {
     const { classes } = this.props;
-
     return (
         <Grid className={classes.grid} container align="center" >
           <Grid item xs={12} >
-          <Form onSubmit={this._handleSubmit}>
-            <FormGroup tag="fieldset" row className="col-sm-12" xs={6}>
-              <Container>
-                <Row className={classes.row}>
-                  <Col md="12" className={classes.col}>
-                    <Row className={classes.row} >
-                      <legend className="col-form-label col-md-1 col-sm-2"  style={{ paddingLeft: 0 }}>Civilité : </legend>
-                        <FormGroup check className="col-lg-1 col-sm-2">
-                            <Label check>
-                              <Input type="radio" name="gender" value="Mr" onChange={this._handleInputOnChange}/>
-                              Mr
-                            </Label>
-                          </FormGroup>
-                        <FormGroup check className="col-lg-1 col-sm-2">
-                            <Label check>
-                              <Input type="radio" name="gender" value="Mme" onChange={this._handleInputOnChange}/>
-                                Mme
-                            </Label>
-                        </FormGroup>
-                        <FormGroup check className="col-lg-1 col-sm-2">
-                          <Label check>
-                              <Input type="radio" name="gender" value="Mlle" onChange={this._handleInputOnChange}/>
-                                Mlle
-                            </Label>
-                        </FormGroup>
-                    </Row>
-
-                    <Row className={classes.row}>
-                      <FormGroup row className="col-sm-12" >
-                        <Label>Nom</Label>
-                        <Input type="text" placeholder="Nom" name="lastName" id="lastName" onChange={this._handleInputOnChange}/>
-                      </FormGroup>
-                    </Row>
-
-                    <Row className={classes.row}>
-                      <FormGroup  row className="col-sm-12" >
-                        <Label>Prenom</Label>
-                        <Input type="text" placeholder="Prenom" name="firstName" id="firstName" onChange={this._handleInputOnChange}/>
-                      </FormGroup>
-                    </Row>
-
-                    <Row className={classes.row}>
-                      <FormGroup  row className="col-sm-4" >
-                        <Label>Date de naissance </Label>
-                        <Input type="date" placeholder="Date de naissance" name="birthDay" id="birthDay" onChange={this._handleInputOnChange}/>
-                      </FormGroup>
-                      <FormGroup row className="col-sm-5 offset-1" >
-                      <Label>N° Dossier</Label>
-                      <Input type="text" placeholder="N° Dossier" name="nDossier" id="nDossier" onChange={this._handleInputOnChange}/>
-                    </FormGroup>
-                    </Row>
-
-                    <Row className={classes.row}>
-                      <FormGroup row  className="col-sm-12">
-                        <Label>Commentaire</Label>
-                        <Input type="textarea" name="commentaire" id="commentaire" onChange={this._handleInputOnChange} />
-                      </FormGroup>
-                      </Row>
-
-                    <Row className={classes.row}>
-                      <FormGroup row className="col-sm-10" >
-                        <Col sm={{ size : 10, offset : 9}}>
-                          <Button  className={classes.button} color="primary">Ajouter</Button>{'  '}
-                        </Col>
-                      </FormGroup>
-                    </Row>
-
-                  </Col>
-                </Row>
-              </Container>
-            </FormGroup>
-          </Form>
+            <UserForm user={this.state} isNew={true}/>
           </Grid>
-          </Grid>
+        </Grid>
     );
   }
 }

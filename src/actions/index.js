@@ -1,63 +1,49 @@
 import * as types from '../constants/ActionTypes';
-import userApi from '../userApi/userApi';
-import { CALL_API } from 'redux-api-middleware';
 
 
-const getUser= _ =>{
-}
+export const requestUsers = () => {
+  return {
+     type : types.FETCH_USER_LIST, 
+     loading  : true,
+  }};
 
+export const requestUsersSuccess = ({ data }) => {
+  return  { type: types.FETCH_USER_LIST_SUCCESS, data : data, loading : false} 
+};
 
-// export const addUser = user => ({
-//   type  : types.ADD_USER,
-//   user
-// });
+export const fetchedUsers = () => {
+  return { type : types.FETCHED_USERS};
+};
 
-// export const removeUser = id =>({
-//   type : type.REMOVE_USER,
-//   id
-// });
-
-// export const updateUser = user =>({
-//   type : type.UPDATE_USER,
-//   user
-// });
-
-export const fetchUsersList = () => {return {
-  [CALL_API]: {
-    endpoint : 'http://localhost:3001/users',
-    method : 'GET',
-    types : [types.FETCH_USER_LIST, 
-             {
-               type : types.FETCH_USER_LIST_SUCCESS,
-               payload: (action, state, res) => {
-                 return res.json().then(json => {
-                   console.log(json);
-                    return json.data;
-                 })
-               }
-             }
-            , types.FETCH_USER_LIST_FAILURE],
+export const deleteUser = (id) => {
+  return {
+    type : types.REMOVE_USER,
+    id
+    
   }
-}}
+};
 
-export const getUserList = users =>{
- return {
-  type : types.USER_LIST,
-  users
-}};
-
-
-export function displayUserList(){
-  return dispatch => {
-    return fetch('/users')
-    .then(res => res.json())
-    .then(({ data }) => {   
-      console.log(data)
-      dispatch(getUserList(data));
-    })
-    .catch(error =>{
-      throw(error);
-    })
+export const deleteUserSuccess = (id) => {
+  console.log('Trying to delete', id);
+  return { 
+    type : types.REMOVE_USER_SUCCESS, 
+    id 
   }
 }
+
+export const updateUser = (data) => {
+  return {
+    type : types.UPDATE_USER,
+    data
+  }
+};
+export const updateUserSuccess = (data) => {
+  return {
+    type : types.UPDATE_USER_SUCCESS,
+    data
+  }
+};
+
+
+
 

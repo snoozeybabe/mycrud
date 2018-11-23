@@ -14,9 +14,12 @@ import Infos from './Infos';
 import ListUser from '../containers/ListUserContainer';
 import NewFormUser from '../containers/NewFormUser';
 
+
+
 const styles = {
   root :{
     flexGrow : 1,
+    overFlow : 'hidden'
   },
 
   flex :{
@@ -25,10 +28,17 @@ const styles = {
 
   link : {
     textDecoration : 'none',
+    '&:hover':{
+      textDecoration : 'none'
+    }
   },
   button :{
-    outline :'none!important'
+    outline :'none!important',
+    '&:hover':{
+      textDecoration : 'none'
+    }
   }
+
 
 };
 
@@ -38,16 +48,15 @@ const styles = {
 
     return (
       <Router>
-    
       <div className={classes.root}>
       <AppBar position="static" color="default">
         <Toolbar>
           <Link   style={{ textDecoration: 'none' }} to="/">
           <img src={logo} className='App-logo' alt="Logo" />
           </Link>
-            
           <Typography variant="title" className={classes.flex}>
-            ReactCrud
+            Cruddition
+            
           </Typography>
           <Link className={classes.link} to='/'><Button  className={classes.button} color="inherit">Home</Button></Link>
           <Link className={classes.link} to='/userlist'>  <Button  className={classes.button} color="inherit"> List </Button></Link>
@@ -55,7 +64,6 @@ const styles = {
           <Link className={classes.link} to='/about'>  <Button  className={classes.button} color="inherit">About</Button></Link>
         </Toolbar>
       </AppBar>
-  
       <Route exact path='/' component={Infos}/>
       <Route exact path='/about' component={About}/>
       <Route exact path='/userlist' component={ListUser}/>

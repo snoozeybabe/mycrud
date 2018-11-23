@@ -74,13 +74,16 @@ const styles = theme =>({
       backgroundColor : 'white',
       textAlign: 'center',
       '&:hover':{
-        color: 'red',
-        backgroundColor: 'white',
+        backgroundColor: '#2962FF',
+        color : 'white'
       },
     },
     link : {
       margin : 'auto',
-     textDecoration: 'none'
+     textDecoration: 'none',
+     '&:hover':{
+      textDecoration : 'none',
+    }
     }
 
 })

@@ -1,41 +1,42 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-// import { displayUserList }from '../actions';
 import ListUser from '../components/ListUser';
-//import { bindActionCreators } from 'redux'
+import { fetchedUsers, deleteUser } from '../actions';
+//import { fetchUsers } from '../sagas';
 
-import { fetchUsersList } from '../actions';
+
 class ListUserContainer extends Component {
-
-  constructor(props){
+  constructor(props) {
     super(props);
-
   }
 
-  componentWillMount(){
-      this.props.dispatch(fetchUsersList())
-    
-    //const { actions } = this.props;
-    //this.props.actions.displayUserList();
+  componentWillMount() {
+    const { dispatch } = this.props;
+    dispatch(fetchedUsers());
   }
-  render(){
-    return(
-      <ListUser users={this.props.users} />
+
+  _removeUserList =(id) => {
+      const { dispatch } = this.props;      
+      dispatch(deleteUser(id));
+  }
+  render() {
+    return (
+      <ListUser 
+        users={this.props.data ? this.props.data : []} 
+        loading={this.props.loading} 
+        onRemove={this._removeUserList}
+      />
     );
   }
 }
 
-// ListUserContainer.propTypes = {
-//   users : PropTypes.array.isRequired
-// };
 
-function mapStateToProps(state, ownProps) {
-  //TODO 
-  return {
-    users : state.users
-  }
+const mapStateToProps = state => {
+  return { 
+    data: state.data.users,
+    loading : state.data.loading,
+    openModal : false,
+  };
 }
 
-
-
-export default connect(mapStateToProps)(ListUserContainer);
+export default connect(mapStateToProps)(ListUserContainer); 

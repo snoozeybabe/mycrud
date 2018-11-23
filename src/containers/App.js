@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-use-before-define
 import React, { Component } from 'react';
 import './../containers/App.css';
 import 'react-dates/initialize';
@@ -14,12 +13,9 @@ class App extends Component {
   }
   render() {
   //  const { patients } = this.state;
-
   //TODO : Remove la div App ( vérifier les dépendances )
     return (
-      <div className="App">
         <NavBar/>
-      </div>
     );
   }
 }

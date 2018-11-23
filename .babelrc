@@ -1,6 +1,7 @@
 {
   "presets" : ["env", "react"],
    "plugins": [
-    "emotion" 
+    "emotion",
+    "@babel/plugin-syntax-dynamic-import"
    ]
 }

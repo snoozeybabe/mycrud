@@ -67,7 +67,7 @@ class FormUser extends Component {
               </Row>
               <Col>
                 <FormGroup row>
-                  <Label for="firstName">Nom :</Label>
+                  <Label for="lastName">Nom :</Label>
                   <Input type="text" name="firstName" placeholder="Nom"/>
                 </FormGroup>
                 <FormGroup row>
@@ -90,7 +90,6 @@ class FormUser extends Component {
                 <Button block color="success">Submit</Button>
                 </Row>
               </Col>
-              
             </FormGroup>
           </Form>
           </Grid>

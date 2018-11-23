@@ -7,10 +7,13 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow  from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import {Today,AccountBox, DeleteForever} from '@material-ui/icons';
+import {AccountBox, DeleteForever} from '@material-ui/icons';
 import Loader from '../components/Loader';
 import {Input, Label} from 'reactstrap';
 import WrappedModal from '../components/ModalRemove';
+import EditForm from '../components/EditForm';
+
+
 
 
 const CustomCell = withStyles(theme => ({
@@ -65,23 +68,18 @@ class ListUser extends Component {
   constructor(props){
     super(props);
     this.state = {
-      users : props.users ? props.users : [],
-      loading : true,
-      openModal : false,
+      users        : props.users ? props.users : [],
+      loading      : props.loading,
+      openModal    : false,
+      selected     : null,
+      openform     : false,
     }
     this.searchUser = this.searchUser.bind(this);
+    this.editProfil = this.editProfil.bind(this);
+    this.deleteUser = this.deleteUser.bind(this)
   }
-
-  componentDidMount() {
-  
-   // this.setState({ loading : true});
-  }
-
- 
-
 
   searchUser = e =>{
-    
     const target = e.target;
     var searchName = { firstName : target.value}
     fetch('/users/search',{
@@ -92,7 +90,7 @@ class ListUser extends Component {
     .then(res => res.json())
     .then(data => {
       this.setState({users : data});
-    })
+    }).catch((e)=> console.log(e))
 
     //TODO : Ajouter Catch
 
@@ -101,41 +99,62 @@ class ListUser extends Component {
 
 
   }
-  editProfil = _ => {
 
-    this.setState({ openModal : !this.state.openModal});
+
+  editProfil = (e, user) => {
+   e.preventDefault();
+  
+    this.setState({  
+      selected : user,
+      openModal : !this.state.openModal
+      });
   }
-  deleteUser = _ => {
+
+
+  deleteUser = (e) => {
+    
+   const { selected, openModal } = this.state;
+    this.props.onRemove(selected.id);
+    this.setState({ openModal : !openModal});
+    }
+
+
+  onCloseForm =() =>{
 
   }
+
+  updateForm =(e,user) =>{
+    e.preventDefault();
+    this.setState({ selected : user, openform : !this.state.openform})
+  }
+
   seeProfil = _ => {
 
   }
 
+
+
   //WARNING! To be deprecated in React v17. Use new lifecycle static getDerivedStateFromProps instead.
   componentWillReceiveProps(nextProps) {
-    console.log("MTFCK", nextProps )
     if(nextProps !== this.props) {
-      this.setState({ users : nextProps.users, loading : false});
+      this.setState({ users : nextProps.users, loading :  nextProps.loading});
       
     }
   }
 
   renderUsers = (user) => {
+    
     const { classes } = this.props;
     return( 
-
-    
     <TableRow className = {classes.row} key = {user.id}>
-        <CustomCell component="th" scope="row">{user.civilite + " "+ user.nom}</CustomCell>
-        <CustomCell>{user.prenom}</CustomCell>
+        <CustomCell component="th" scope="row">{user.gender + " "+ user.lastname}</CustomCell>
+        <CustomCell>{user.firstname}</CustomCell>
         <CustomCell>{user.age}</CustomCell>
-        <CustomCell>{user.n_dossier}</CustomCell>
-        <CustomCell>{user.date_naissance}</CustomCell>
+        <CustomCell>{user.ndossier}</CustomCell>
+        <CustomCell>{user.birthday}</CustomCell>
         <CustomCell>
-        <AccountBox onClick={() => { this.editProfil()}} />
-        <Today/>
-        <DeleteForever/>
+          <AccountBox  onClick={e => this.updateForm(e, user)} />
+          <DeleteForever onClick={e => this.editProfil(e, user)}/>
         </CustomCell>
       </TableRow>
     );
@@ -143,7 +162,7 @@ class ListUser extends Component {
 
 
   render() {
-    const {users}  =  this.state; 
+    const {users, selected}  =  this.state; 
     const { classes } = this.props;
     
     if(this.state.loading){
@@ -173,7 +192,17 @@ class ListUser extends Component {
                }
             </TableBody>
           </Table>
-          <WrappedModal open={this.state.openModal}/>
+          <WrappedModal 
+            callbackClose={this.editProfil} 
+            callbackRemove ={this.deleteUser}
+            open={this.state.openModal ? this.state.openModal : false} 
+            user={selected} 
+          />
+            <EditForm 
+              open={this.state.openform} 
+              closeForm={this.updateForm}
+              user ={selected}
+              />
           </Paper>
         
       </div>

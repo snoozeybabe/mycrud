@@ -6,7 +6,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
-
 const styles = {
   color : 'blue',
 };
@@ -35,7 +34,6 @@ class About extends Component {
         <h1>About</h1>
         </div>
         <div style={divdate} >
-
         <Paper>       
         </Paper>
         </div>
